@@ -12,7 +12,7 @@
                         <h2
                             class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl break-words">
                             {{ $post->category }}</h2>
-                        <h3>{{ $post->title }}</h3>
+                        <h3>{{ $post->title }}　{{ $post->evaluation }}</h3>
                         <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
                             <span
                                 class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->updated_at ? 'NEW' : '' }}</span>
