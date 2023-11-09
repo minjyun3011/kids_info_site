@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+
+
     public function processRecordsWithSameKidName()
     {
         $same_kid_name = '中山功太';
@@ -29,12 +32,32 @@ class PostController extends Controller
      */
     public function index()
     {
+        // {
+        //     $posts = Post::all();
+        //     $groupedPosts = $posts->groupBy('category');
+
+        //     return view('posts.index', compact('groupedPosts'));
+
+        //     return view('posts.index', compact('posts'));
+        // }
+        // URLから取得したカテゴリがあれば、対応するカテゴリの記事を表示
+        $category = request()->segment(2); // URLの2番目のセグメント（posts/{category}）を取得
+
+        if ($category) {
+            return $this->getPostsByCategory($category);
+        }
+
+        // カテゴリがない場合は通常の一覧表示
         $posts = Post::all();
         $groupedPosts = $posts->groupBy('category');
 
         return view('posts.index', compact('groupedPosts'));
+    }
+    public function getPostsByCategory($category)
+    {
+        $posts = Post::where('category', $category)->get();
 
-        return view('posts.index', compact('posts'));
+        return view('posts.category', compact('category', 'posts'));
     }
 
     /**

@@ -1,4 +1,5 @@
 <x-app-layout>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             中山功太君
@@ -17,43 +18,38 @@
                         @php $categoryGroups[$post->category] = []; @endphp
                 @endif
                 <!-- カテゴリの追加記事 -->
-                <article>
-                    <a href="{{ route('posts.show', ['post' => $post]) }}">
-                        <h3>{{ $post->title }} {{ $post->evaluation }}</h3>
-                        <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
-                            <span class="text-red-400 font-bold">
-                                {{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->updated_at ? 'NEW' : '' }}
-                            </span>
-                            {{ $post->updated_at }}
-                        </p>
-                    </a>
+                <article style="display: flex; flex-direction: column;">
+                    <div style="display: flex; flex-direction: column;">
+                        <a href="{{ route('posts.show', ['post' => $post]) }}"
+                            style="display: flex; justify-content: space-between;">
+                            <h3 style="margin-bottom: 0;">{{ $post->title }}</h3>
+                            <span style="align-self: flex-end;">{{ $post->evaluation }}</span>
+                        </a>
+                    </div>
+
                 </article>
                 <!-- 最後の記事の場合、グループを終了 -->
                 @if ($index === count($posts) - 1 || $post->category !== $posts[$index + 1]->category)
-                    </div>
-                @endif
-            @endforeach
-            <!-- カテゴリごとの記事を表示 -->
-            @foreach ($categoryGroups as $category => $group)
-                @if (!empty($group)) <!-- グループに記事がある場合のみ表示 -->
-                    <div class="border p-4">
-                        <h2 class="font-bold text-xl mb-2">{{ $category }}</h2>
-                        @foreach ($group as $post)
-                            <article>
-                                <a href="{{ route('posts.show', ['post' => $post]) }}">
-                                    <h3>{{ $post->title }} {{ $post->evaluation }}</h3>
-                                    <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
-                                        <span class="text-red-400 font-bold">
-                                            {{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->updated_at ? 'NEW' : '' }}
-                                        </span>
-                                        {{ $post->updated_at }}
-                                    </p>
-                                </a>
-                            </article>
-                        @endforeach
-                    </div>
-                @endif
-            @endforeach
         </div>
+        @endif
+        @endforeach
+        <!-- カテゴリごとの記事を表示 -->
+        @foreach ($categoryGroups as $category => $group)
+            @if (!empty($group))
+                <!-- グループに記事がある場合のみ表示 -->
+                <div class="border p-4">
+                    <h2 class="font-bold text-xl mb-2">{{ $category }}</h2>
+                    @foreach ($group as $post)
+                        <article>
+                            <a href="{{ route('posts.show', ['post' => $post]) }}">
+                                <h3>{{ $post->title }} {{ $post->evaluation }}</h3>
+
+                            </a>
+                        </article>
+                    @endforeach
+                </div>
+            @endif
+        @endforeach
+    </div>
     </div>
 </x-app-layout>

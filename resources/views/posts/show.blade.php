@@ -10,7 +10,7 @@
         <article class="mb-2">
             <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl break-words">
                 {{ $post->kid_name }}君</h1>
-            <h3>担当：{{ $post->teacher }}</h3>
+            <h3>担当:{{ $post->teacher }}</h3>
             <h3>{{ $post->category }}</h3>
             <h3>{{ $post->title }}</h3>
             <h3>{{ $post->evaluation }}</h3>
