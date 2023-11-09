@@ -11,12 +11,28 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function processRecordsWithSameKidName()
+    {
+        $same_kid_name = '中山功太';
+
+        $records = Post::where('kid_name', $same_kid_name)->get();
+
+        // 取得したレコードを処理するためのコードをここに追加
+        foreach ($records as $record) {
+            // レコードの処理を行う
+        }
+
+        // レコードの処理が終わったら、適切なレスポンスを返すか、ビューを表示するなどの操作を行います。
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $posts = Post::all();
+        $groupedPosts = $posts->groupBy('category');
+
+        return view('posts.index', compact('groupedPosts'));
 
         return view('posts.index', compact('posts'));
     }

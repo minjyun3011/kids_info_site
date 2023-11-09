@@ -1,2 +1,2 @@
-<h1 class="text-lg">中山功太君</h1>
+<h1 class="text-lg">ログイン</h1>
 
