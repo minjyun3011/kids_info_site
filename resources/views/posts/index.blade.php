@@ -18,14 +18,15 @@
                         @php $categoryGroups[$post->category] = []; @endphp
                 @endif
                 <!-- カテゴリの追加記事 -->
-                <article style="display: flex; flex-direction: column;">
-                    <div style="display: flex; flex-direction: column;">
+                <article>
+                    <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                         <a href="{{ route('posts.show', ['post' => $post]) }}"
-                            style="display: flex; justify-content: space-between;">
-                            <h3 style="margin-bottom: 0;">{{ $post->title }}</h3>
+                            style="display: flex; justify-content: space-between; padding: 10px; border: 1px solid #ccc; border-radius: 5px; text-decoration: none; color: inherit;">
+                            <h3 style="margin: 0;">{{ $post->title }}</h3>
                             <span style="align-self: flex-end;">{{ $post->evaluation }}</span>
                         </a>
                     </div>
+
 
                 </article>
                 <!-- 最後の記事の場合、グループを終了 -->
