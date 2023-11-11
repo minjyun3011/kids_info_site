@@ -13,7 +13,9 @@ class Post extends Model
         'category',
         'title',
         'evaluation',
-        'teacher'
+        'old_evaluation',
+        'teacher',
+        'detail'
     ];
     public function user()
     {

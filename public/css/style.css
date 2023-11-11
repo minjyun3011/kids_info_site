@@ -29,4 +29,13 @@
     /* 太字 */
 }
 
-
+.no-detail-message {
+    font-size: 1.2rem;
+    /* 例: 適切なフォントサイズを設定 */
+    color: #888;
+    /* 例: 適切なテキストカラーを設定 */
+}
+.linked-heading:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }

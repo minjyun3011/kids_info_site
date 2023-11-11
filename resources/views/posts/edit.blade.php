@@ -25,13 +25,22 @@
                     </label>
 
                 </div>
-                <div class="flex-1 mr-4">
+                <div class="flex-1">
                     <label class="block text-gray-700 text-sm mb-2" for="evaluation">
                         評価
                     </label>
-                    <input type="text" name="evaluation"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full py-2 px-3 text-sm"
-                        required placeholder="評価" value="{{ old('evaluation', $post->evaluation) }}">
+                    <select name="evaluation"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full py-2 px-3 text-sm">
+                        <option value="◎">◎</option>
+                        <option value="◯">◯</option>
+                        <option value="△">△</option>
+                        <option value="✕">✗</option>
+                    </select>
+                    <input type="hidden" name="old_evaluation" value="{{ $post->evaluation }}">
+
+                    {{-- <input type="text" name="evaluation"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full py-2 px-3 text-sm" --}}
+                    {{-- required placeholder="評価" value="{{ old('evaluation', $post->evaluation) }}"> --}}
 
                 </div>
             </div>
@@ -39,17 +48,17 @@
                 <div class="quote-header">担当の先生からの一言</div>
                 <textarea type="text" name="detail"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full py-2 px-3 text-sm"
-                    required placeholder="(任意)">{{ old('detail', $post->detail) }}</textarea>
+                    placeholder="(任意)">{{ old('detail', $post->detail) }}</textarea>
             </div>
             <div class="flex justify-start mt-4">
                 <!-- 更新ボタン -->
                 <input type="submit" value="更新"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 
                 <!-- 戻るボタン -->
                 <input type="button" value="一つ前に戻る"
                     onclick="location.href='{{ route('posts.show', ['post' => $post]) }}'"
-                    class="ml-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="ml-4 bg-red-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 
             </div>
 

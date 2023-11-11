@@ -27,6 +27,7 @@ class StorePostRequest extends FormRequest
             'title' => 'required|string|max:15',
             'evaluation' => 'required|string|max:1',
             'teacher' => 'required|string|max:10',
+            'detail' => 'nullable|string'
         ];
     }
 }

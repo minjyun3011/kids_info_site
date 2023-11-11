@@ -13,6 +13,8 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
+        WithoutModelEvents::class;
+
         $param = [
             [
                 'kid_name' => '中山功太',
@@ -1098,6 +1100,6 @@ class PostSeeder extends Seeder
 
         ];
         # DB::table->insertでレコードの登録
-        DB::table('memos')->insert($param);
+        DB::table('posts')->insert($param);
     }
 }

@@ -27,6 +27,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'nullable',
             'evaluation' => 'required|string|max:1',
             'teacher' => 'nullable',
+            'detail' => 'nullable|string'
         ];
     }
 }

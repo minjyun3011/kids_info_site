@@ -71,6 +71,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // コントローラの store メソッド
     public function store(StorePostRequest $request)
     {
         $post = new Post($request->all());
@@ -93,6 +94,10 @@ class PostController extends Controller
             ->route('posts.show', $post)
             ->with('notice', '記事を登録しました');
     }
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -118,6 +123,10 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // PostController.php
+
+    // PostController.php
+
     public function update(UpdatePostRequest $request, string $id)
     {
         $post = Post::find($id);
@@ -126,13 +135,15 @@ class PostController extends Controller
             return redirect()->route('posts.show', $post)
                 ->withErrors('評価担当以外は情報を更新できません');
         }
-        $post->fill($request->all());
+
+        // 更新前の値を取得
+        $old_evaluation = $post->evaluation;
 
         // トランザクション開始
         DB::beginTransaction();
         try {
             // 更新
-            $post->save();
+            $post->update($request->all());
 
             // トランザクション終了(成功)
             DB::commit();
@@ -142,7 +153,19 @@ class PostController extends Controller
             return back()->withInput()->withErrors($e->getMessage());
         }
 
+        // ビューに渡すデータに追加
+        // $data = [
+        //     'post' => $post,
+        //     'old_evaluation' => $old_evaluation,
+        // ];
+
         return redirect()->route('posts.show', $post)
-            ->with('notice', '情報を更新しました');
+            ->with(compact('old_evaluation'))
+            ->with('notice', '評価を更新しました');
+    }
+
+    public function getOriginalValue($column)
+    {
+        return $this->getOriginal($column);
     }
 }
