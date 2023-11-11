@@ -22,11 +22,11 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kid_name' => 'required|string|max:10',
-            'category' => 'required|string|max:10',
-            'title' => 'required|string|max:15',
+            'kid_name' => 'nullable',
+            'category' => 'nullable',
+            'title' => 'nullable',
             'evaluation' => 'required|string|max:1',
-            'teacher' => 'required|string|max:10',
+            'teacher' => 'nullable',
         ];
     }
 }

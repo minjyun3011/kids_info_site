@@ -32,7 +32,7 @@
         </article>
         <div class="teacher-quote">
             <div class="quote-header">担当の先生からの一言</div>
-            <p class="quote-text">ここに先生からの一言が入ります。</p>
+            <p class="quote-text">{{ $post->detail }}</p>
         </div>
         <div class="flex justify-end mt-4">
             <div class="flex flex-row mr-5">
